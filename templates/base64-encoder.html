@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <title>Base64 Encoder</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #3498db; /* You can change this color */
+            color: #fff; /* Text color */
+            font-family: 'Arial', sans-serif;
+        }
+
+        #container {
+            text-align: center;
+            width: 50%;
+        }
+
+        #text-area {
+            width: 80%;
+            height: 150px;
+            padding: 10px;
+            margin: 10px;
+            border: 2px solid #fff; /* Border color */
+            border-radius: 8px;
+            background-color: #2980b9; /* Textbox background color */
+            color: #fff; /* Text color */
+            resize: none; /* Disable textarea resizing */
+        }
+
+        #encode-button {
+            font-size: 18px;
+            padding: 10px;
+            width: 50%;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            background-color: #27ae60; /* Button background color */
+            color: #fff; /* Text color */
+            cursor: pointer;
+        }
+
+        #encoding-message {
+            margin-top: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #2c3e50; /* Add background color to indicate clickability */
+            padding: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <textarea id="text-area" placeholder="Enter text to encode..."></textarea><br>
+        <button id="encode-button" onclick="encodeText()">Encode</button>
+        <div id="encoding-message" onclick="copyToClipboard()"></div>
+    </div>
+
+    <script>
+        function encodeText() {
+            var textArea = document.getElementById("text-area");
+            var encodedText = btoa(textArea.value); // Base64 encoding
+            document.getElementById("encoding-message").innerHTML = encodedText;
+            document.getElementById("encoding-message").setAttribute("data-clipboard-text", encodedText);
+        }
+
+        function copyToClipboard() {
+            var encodingMessage = document.getElementById("encoding-message");
+            var input = document.createElement("input");
+            input.value = encodingMessage.getAttribute("data-clipboard-text");
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand("copy");
+            document.body.removeChild(input);
+             Toastify({
+                text: "Base64 copied to clipboard!",
+                duration: 3000, // 3 seconds
+                close: true,
+                gravity: "top", // bottom or top
+                position: "center", // right, left, or center
+                backgroundColor: "#4CAF50", // Green background color
+            }).showToast();
+        }
+    </script>
+</body>
+</html>

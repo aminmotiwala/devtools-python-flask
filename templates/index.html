@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utility Tiles</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #3498db; /* You can change this color */
+            color: #fff; /* Text color */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .tile {
+            border: 2px solid #fff; /* Border color */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow */
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        #password-generator {
+            background-color: #2980b9; /* Tile background color */
+        }
+
+        #json-beautifier {
+            background-color: #27ae60; /* Tile background color */
+        }
+
+        #base64-encoder {
+            background-color: #e74c3c; /* Tile background color */
+        }
+
+        #base64-decoder {
+            background-color: #f39c12; /* Tile background color */
+        }
+
+        .title {
+            font-size: 2em;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div id="password-generator" class="col-md-4 tile" onclick="redirectToPasswordGenerator()">
+                <div class="title">Password Generator</div>
+            </div>
+
+            <div id="json-beautifier" class="col-md-4 tile" onclick="redirectToJSONBeautifier()">
+                <div class="title">JSON Beautifier</div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div id="base64-encoder" class="col-md-4 tile" onclick="redirectToBase64Encoder()">
+                <div class="title">Base64 Encoder</div>
+            </div>
+
+            <div id="base64-decoder" class="col-md-4 tile" onclick="redirectToBase64Decoder()">
+                <div class="title">Base64 Decoder</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function redirectToPasswordGenerator() {
+            window.location.href = "/password-generator";
+        }
+
+        function redirectToJSONBeautifier() {
+            window.location.href = "/json-beautifier";
+        }
+
+        function redirectToBase64Encoder() {
+            window.location.href = "/base64-encoder";
+        }
+
+        function redirectToBase64Decoder() {
+            window.location.href = "/base64-decoder";
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

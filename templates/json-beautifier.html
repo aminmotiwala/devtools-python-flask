@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Beautifier</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #3498db; /* You can change this color */
+            color: #fff; /* Text color */
+            font-family: 'Arial', sans-serif;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .textbox {
+            flex: 1;
+            height: 70vh; /* Adjust the height as needed */
+            width: 70vh;
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #fff; /* Border color */
+            border-radius: 8px;
+            background-color: #2980b9; /* Textbox background color */
+            color: #fff; /* Text color */
+        }
+
+        #beautify-button {
+            font-size: 18px;
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            background-color: #27ae60; /* Button background color */
+            color: #fff; /* Text color */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <textarea class="textbox" id="input-text" placeholder="Enter text to beautify..."></textarea>
+        <button id="beautify-button" onclick="beautifyText()">Beautify</button>
+        <textarea class="textbox" id="output-text" placeholder="Beautified text will appear here..." readonly></textarea>
+    </div>
+
+    <script>
+        function beautifyText() {
+             var inputText = document.getElementById("input-text").value;
+
+            // Make an AJAX call to the Flask endpoint
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/beautify-json", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+                document.getElementById("output-text").value = xhr.responseText;
+            };
+
+            xhr.send(JSON.stringify({ inputText: inputText }));
+        }
+    </script>
+</body>
+</html>
